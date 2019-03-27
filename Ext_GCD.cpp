@@ -15,3 +15,9 @@ int extGCD(int a, int b, int *X, int *Y){
 
     return gcd;
 }
+
+// Bezout's Identity states the following:
+// ax + by = gcd(a,b) 
+
+// More solutions as
+// ( x + k*b/gcd(a,b), y – k*a/gcd(a,b))
