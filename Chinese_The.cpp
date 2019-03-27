@@ -1,4 +1,5 @@
 
+// Parâmetro R de restos e MOD de módulos
 // Retorna {resto, módulo}, onde resto é a solução única em módulo
 // Caso não exista solução, retorna {-1, -1}
 
