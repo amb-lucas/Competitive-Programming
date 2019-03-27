@@ -1,5 +1,5 @@
 
-int extGCD(int a, int b, int *X, int *Y){
+int extGCD(int a, int b, int& X, int& Y){
 
 	if(b == 0){
 		*X = 1;
@@ -8,10 +8,10 @@ int extGCD(int a, int b, int *X, int *Y){
 	}
 
 	int nx, ny;
-    int gcd = extGCD(a%b, b, &nx, &ny); 
+    int gcd = extGCD(a%b, b, nx, ny); 
 
-    *X = ny - (b/a)*nx;
-    *Y = nx;
+    X = ny - (b/a)*nx;
+    Y = nx;
 
     return gcd;
 }
