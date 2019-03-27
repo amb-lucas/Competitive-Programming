@@ -1,7 +1,7 @@
 
-// Parâmetro R de restos e MOD de módulos
-// Retorna {resto, módulo}, onde resto é a solução única em módulo
-// Caso não exista solução, retorna {-1, -1}
+// Parameter R for rests and MOD for modules
+// Returns the unique solution format {rest, mod}
+// Or {-1, -1} in case there is no solution
 
 pair<int, int> CRT(vector<int> R, vector<int> MOD){
 
@@ -18,10 +18,10 @@ pair<int, int> CRT(vector<int> R, vector<int> MOD){
         int p, q;
         extGCD(M/g, MOD[i]/g, &p, &q);
 
-        // Atualização do MOD para novo LCM
+        // Updating MOD to new LCM
         M = M/g * MOD[i];
 
-        // Atualização do resto
+        // Updating rest to incorporate new equation
         A = (A*((MOD[i]/g)%M))%M;
         A = (A*(q%M))%M;
 
