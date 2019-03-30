@@ -9,7 +9,6 @@ if (g == 1) x = (x % MOD + MOD) % MOD;
 // Only exists if N and MOD are coprimes
 
 
-// Para todos os números entre 1 e MOD-1
 // To all numbers between 1 and MOD-1
 
 inv[1] = 1;
