@@ -1,19 +1,18 @@
 
-ll extGCD(ll a, ll b, ll& X, ll& Y){
+ll extGCD(ll a, ll b, ll &x, ll &y){
 
-	if(b == 0){
-		X = 1;
-		Y = 1;
-		return a;
-	}
+	if(a == 0){
+        x = 0;
+        y = 1;
+        return b;
+    }
+
+    ll nx, ny;
+    ll d = extGCD(b % a, a, nx, ny);
+    x = ny-(b/a)*nx;
+    y = nx;
 	
-	ll nx, ny;
-	ll gcd = extGCD(a%b, b, nx, ny); 
-	
-	X = ny - (b/a)*nx;
-	Y = nx;
-	
-	return gcd;
+    return d;
 }
 
 // Bezout's Identity states the following:
