@@ -1,7 +1,9 @@
 
 // Returns correct rest of r in mod m
 ll normalize(ll r, ll m){
-	return ((r%m)+m)%m;
+	r %= m;
+	if(r<0) r+=m;
+	return r;
 }
 
 // Parameter R for rests and MOD for modules
@@ -25,16 +27,10 @@ pair<ll, ll> CRT(vector<ll> R, vector<ll> MOD){
         extGCD(M/g, m/g, p, q);
  
         ll mod = (M/g)*m;
- 
- 		A = (A*(m/g))%mod;
- 		A = (A*q)%mod;
+ 		ll x = ((__int128)A*(m/g)%mod*q%mod + (__int128)a*(M/g)%mod*p%mod)%mod;
 
- 		ll B = (a*(M/g))%mod;
- 		B = (B*p)%mod;
-
- 		A = (A+B)%mod;
  		M = mod;
- 		A = normalize(A, M);
+ 		A = normalize(x, M);
     }
 
     return {A, M};
