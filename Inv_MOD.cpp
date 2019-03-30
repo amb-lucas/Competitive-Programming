@@ -3,7 +3,7 @@
 
 int x, y;
 int g = extGCD(N, MOD, &x, &y);
-if (g == 1) x = (x % MOD + MOD) % MOD;
+if (g == 1) x = normalize(x, MOD);
 
 // Answer in x
 // Only exists if N and MOD are coprimes
