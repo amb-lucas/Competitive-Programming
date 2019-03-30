@@ -4,9 +4,8 @@
 int x, y;
 int g = extGCD(N, MOD, &x, &y);
 if (g == 1) x = normalize(x, MOD);
-
+else x = -1; // Doesn't exist
 // Answer in x
-// Only exists if N and MOD are coprimes
 
 
 // To all numbers between 1 and MOD-1
