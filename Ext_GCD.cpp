@@ -1,17 +1,17 @@
 
 ll extGCD(ll a, ll b, ll &x, ll &y){
 
-	if(a == 0){
-        x = 0;
-        y = 1;
-        return b;
+	if(b == 0){
+        x = 1;
+        y = 0;
+        return a;
     }
 
     ll nx, ny;
-    ll d = extGCD(b % a, a, nx, ny);
-    x = ny-(b/a)*nx;
-    y = nx;
-	
+    ll d = extGCD(b, a%b, nx, ny);
+
+    x = ny;
+    y = nx-(a/b)*ny;
     return d;
 }
 
