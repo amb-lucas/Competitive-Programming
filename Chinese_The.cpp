@@ -26,7 +26,7 @@ pair<ll, ll> CRT(vector<ll> R, vector<ll> MOD){
         A = (A*((MOD[i]/g)%M))%M;
         A = (A*(q%M))%M;
 
-        int B = ((R[i]%M)*((M/g)%M))%M;
+        ll B = ((R[i]%M)*((M/g)%M))%M;
         B = (B*(p%M))%M;
 
         A = (A+B)%M;
