@@ -1,14 +1,14 @@
 
-int extGCD(int a, int b, int& X, int& Y){
+ll extGCD(ll a, ll b, ll& X, ll& Y){
 
 	if(b == 0){
-		*X = 1;
-		*Y = 1;
+		X = 1;
+		Y = 1;
 		return a;
 	}
 	
-	int nx, ny;
-	int gcd = extGCD(a%b, b, nx, ny); 
+	ll nx, ny;
+	ll gcd = extGCD(a%b, b, nx, ny); 
 	
 	X = ny - (b/a)*nx;
 	Y = nx;
