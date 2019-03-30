@@ -25,12 +25,12 @@ pair<ll, ll> CRT(vector<ll> R, vector<ll> MOD){
  
         ll p, q;
         extGCD(M/g, m/g, p, q);
- 
-        ll mod = (M/g)*m;
- 		ll x = ((__int128)A*(m/g)%mod*q%mod + (__int128)a*(M/g)%mod*p%mod)%mod;
 
- 		M = mod;
- 		A = normalize(x, M);
+        ll mod = (M/g)*m;
+        ll x = ((__int128)A*(m/g)%mod*q%mod + (__int128)a*(M/g)%mod*p%mod)%mod;
+
+ 	M = mod;
+ 	A = normalize(x, M);
     }
 
     return {A, M};
