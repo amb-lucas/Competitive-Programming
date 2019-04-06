@@ -1,44 +1,36 @@
-const int MAXN = 1e5 + 5;
-const int MLOG = log2(MAXN) + 10;
 
-// <3 Mendes
+const int LIM = 1e5;
+const int LIMLG = 30;
 
-int par[MLOG][MAXN];
-int h[MAXN];
+int par[LIM][LIMLG], dpt[LIM];
+vector<int> adj[LIM];
 
-void dfs(int v, int p = -1, int dep = 0) {
-  h[v] = dep;
-  par[0][v] = p;
-  for (int u : adj[v]) {
-    if (u == p) continue;
-    dfs(u, v, dep + 1);
-  }
+void dfs(int v, int p, int l=0){ // chamar como dfs(root, root)
+
+	dpt[v] = l;
+	par[v][0] = p;
+	for(int k=1; k<mlg; k++) par[v][k] = par[par[v][k-1]][k-1];
+
+	for(int u: adj[v]){
+		if(u!=p) dfs(u, v, l+1);
+	}
 }
 
-void preLCA() {
-  for (int i = 1; i < MLOG; ++i) {
-    for (int j = 0; j < n; ++j) {
-      if (par[i - 1][j] != -1) {
-        par[i][j] = par[i - 1][par[i - 1][j]];
-      }
-    }
-  }
-}
+int lca(int a, int b) {
+  
+	if(dpt[b]>dpt[a]) swap(a, b);
 
-int LCA(int u, int v) {
-  if (h[u] > h[v]) swap(u, v);
-  int dist = h[v] - h[u];
-  for (int i = 0; i < MLOG; ++i) {
-    if (dist & (1 << i)) {
-      v = par[i][v];
-    }
-  }
-  if (u == v) return u;
-  for (int i = MLOG - 1; i >= 0; --i) {
-    if (par[i][u] != par[i][v]) {
-      u = par[i][u];
-      v = par[i][v];
-    }
-  }
-  return par[0][u];
+	for(int i=LIMLG-1; i>=0; i--) {
+		if(lvl[a]-(1<<i) >= lvl[b]) a=par[a][i];
+	}
+
+	if(a == b) return a;
+	for(int i=LIMLG-1; i>=0; i--){
+		if(par[a][i] != par[b][i]){
+			a = par[a][i];
+			b = par[b][i];
+		}
+	}
+
+	return par[a][0];
 }
