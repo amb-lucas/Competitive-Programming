@@ -12,8 +12,6 @@ struct query {
     }
 };
 
-
-
     vector<query> q(Q);
     vector<ll> resp(Q);
 
