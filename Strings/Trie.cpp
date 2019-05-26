@@ -13,7 +13,7 @@ int HASH(char a){
 }
 
 node trie[MAXN*LM];
-int itrie = 0;
+int itrie;
 
 int newnode(){
 	int a = ++itrie;
