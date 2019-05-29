@@ -18,15 +18,11 @@ struct pt {
         if(x == P.x) return y < P.y;
         return x < P.x;
     }
-    
     bool operator == (const pt &P){
         return (x==P.x && y==P.y);}
 
     double abs(){
         return x*x + y*y;}
-
-    double score(){
-        return x*y;}
 };
 
 bool cw(pt a, pt b, pt c) {
