@@ -1,7 +1,7 @@
 
 void convex_hull(vector<pt> &v) {
-
-    sort(v.begin(), v.end());
+	
+	sort(v.begin(), v.end());
     v.erase(unique(v.begin(), v.end()), v.end());
 
     vector<pt> up, down;
