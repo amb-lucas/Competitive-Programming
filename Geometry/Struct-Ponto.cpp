@@ -1,3 +1,4 @@
+
 struct pt {
 
     double x, y;
@@ -13,12 +14,12 @@ struct pt {
     pt operator / (const double d){
         return pt(x/d, y/d);}
 
-    bool operator <(const pt &P){
+    bool operator < (const pt &P){
         if(x == P.x) return y < P.y;
         return x < P.x;
     }
     
-    bool operator ==(const pt &P){
+    bool operator == (const pt &P){
         return (x==P.x && y==P.y);}
 
     double abs(){
