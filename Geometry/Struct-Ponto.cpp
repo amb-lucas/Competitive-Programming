@@ -1,3 +1,4 @@
+
 struct pt {
 
 	double x, y;
@@ -25,13 +26,13 @@ struct pt {
     	return x*x + y*y;}
 
 	// Reta AB gira cw ou ccw
-    bool cw(const pt &a, const pt &b){
-    	return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;
-    }
-    bool ccw(const pt &a, const pt &b){
-    	return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) > 0;
-    }
-    bool lined(const pt &a, const pt &b){
-    	return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) == 0;
-    }
+	bool cw(const pt &a, const pt &b){
+		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;
+	}
+	bool ccw(const pt &a, const pt &b){
+		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) > 0;
+	}
+	bool lined(const pt &a, const pt &b){
+		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) == 0;
+	}
 };
