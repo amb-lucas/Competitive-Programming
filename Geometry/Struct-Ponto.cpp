@@ -24,8 +24,14 @@ struct pt {
 
 	double abs(){
     	return x*x + y*y;}
-
-	// Reta AB gira cw ou ccw
+	
+	double angle(){
+		double a = atan2(y, x);
+		if(a<0) a += 2*acos(-1);
+		return a;
+	}
+	
+	// Reta AB gira cw ou ccw para chegar em x,y
 	bool cw(const pt &a, const pt &b){
 		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;
 	}
