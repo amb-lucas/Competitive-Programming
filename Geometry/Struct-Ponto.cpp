@@ -6,7 +6,6 @@ struct pt {
 
 	pt operator + (const pt &P){
 		return pt(x + P.x, y + P.y);}
-
 	pt operator - (const pt &P){
 		return pt(x-P.x, y-P.y);}
 
