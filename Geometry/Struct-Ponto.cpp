@@ -22,7 +22,8 @@ struct pt {
 		return (x==P.x && y==P.y);}
 
 	double abs(){
-    	return x*x + y*y;}
+		return sqrt(x*x+y*y);
+	}
 	
 	double angle(){
 		double a = atan2(y, x);
