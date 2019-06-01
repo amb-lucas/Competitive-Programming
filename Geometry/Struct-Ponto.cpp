@@ -30,7 +30,7 @@ struct pt {
 		return a;
 	}
 	
-	// Reta AB gira cw ou ccw para chegar em x,y
+	// Reta AB gira cw ou ccw para apontar para x,y
 	bool cw(const pt &a, const pt &b){
 		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;
 	}
