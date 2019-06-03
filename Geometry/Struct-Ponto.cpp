@@ -55,9 +55,8 @@ struct PT {
 		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;}
 	bool ccw(const PT &a, const PT &b){
 		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) > 0;}
-	bool aligned(const PT &a, const PT &b){
+	bool alligned(const PT &a, const PT &b){
 		double r = a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y);
-		if(r<0) r = -r;
-		return r < eps;}
+		return abs(r) < eps;}
 
 };
