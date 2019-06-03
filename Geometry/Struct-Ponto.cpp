@@ -58,5 +58,4 @@ struct PT {
 	bool alligned(const PT &a, const PT &b){
 		double r = a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y);
 		return abs(r) < eps;}
-
 };
