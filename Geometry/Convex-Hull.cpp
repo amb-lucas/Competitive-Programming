@@ -1,12 +1,12 @@
 
-void convex_hull(vector<pt> &v) {
+void convex_hull(vector<PT> &v) {
 
 	sort(v.begin(), v.end());
 	v.erase(unique(v.begin(), v.end()), v.end());
 
-	vector<pt> up, down;
+	vector<PT> up, down;
 
-	for(pt p: v){
+	for(PT p: v){
 
 		while(up.size()>=2 && !p.cw(up[up.size()-2], up.back()))
 			up.pop_back();
