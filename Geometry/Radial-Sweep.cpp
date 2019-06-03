@@ -18,7 +18,7 @@ double normalizar(double ang){
 }
 
 int N;
-vector<pt> P;
+vector<PT> P;
 
 int query(int p, double R){
 
