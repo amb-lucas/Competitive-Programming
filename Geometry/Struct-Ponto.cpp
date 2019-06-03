@@ -1,4 +1,3 @@
-
 const double eps = 1e-8;
 
 struct PT {
@@ -45,13 +44,10 @@ struct PT {
 		return *this/dist();}
 
 	// Rotaciona o ponto CCW ou CW ao redor da origem
-	PT rotateCCW90(){
-		return PT(-y, x);}
-	PT rotateCW90(){
-		return PT(y, -x);}
-	PT rotateCCW(double t){
-    	return PT(x*cos(t)-y*sin(t), x*sin(t)+y*cos(t));
-	}
+	PT rotateCCW(double t = acos(-1)/2){
+    	return PT(x*cos(t)-y*sin(t), x*sin(t)+y*cos(t));}
+	PT rotateCW(double t = acos(-1)/2){
+		return rotateCCW(2*acos(-1)-t);}
 
 	// Reta AB gira CW ou CCW para ficar na direção de (x,y)
 	bool cw(const PT &a, const PT &b){
