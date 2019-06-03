@@ -12,11 +12,27 @@ PT projectPointLine(PT a, PT b, PT c){
 	return a + (b-a)*((c-a)*(b-a))/((b-a)*(b-a));
 }
 
+// Determina se o ponto c esta na linha a - b assumindo a != b
+bool pointInLine(PT a, PT b, PT c){
+	return (projectPointLine(a, b, c)-c).dist()<eps;
+}
+
+// Determina se o ponto c esta em um segmento a - b
+bool pointInSegment(PT a, PT b, PT c){
+	if(a == b) return a == c;
+	bool x = min(a.x, b.x) <= c.x && c.x <= max(a.x, b.x);
+	bool y = min(a.y, b.y) <= c.y && c.y <= max(a.y, b.y);
+	return x && y && pointInLine(a, b, c);
+}
+
 // Determina se o segmento a - b intersecta com o segmento c - d
 bool segmentsIntersect(PT a, PT b, PT c, PT d){
 
+	if(a == b) return pointInSegment(c, d, a);
+	if(c == d) return pointInSegment(a, b, c);
+
 	if(linesCollinear(a,b,c,d)){
-		if((a-c).dist()<eps || (a-d).dist()<eps || (b-c).dist()<eps || (b-d).dist()<eps) return 1;
+		if(a==c || a==d || b==c || b==d) return 1;
 		if((c-a)*(c-b)>0 && (d-a)*(d-b)>0 && (c-b)*(d-b)>0) return 0;
 		return 1;
 	}
