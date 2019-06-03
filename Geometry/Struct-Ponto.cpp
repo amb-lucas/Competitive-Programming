@@ -1,6 +1,10 @@
 
 const double eps = 1e-8;
 
+double dabs(double a){
+	if(a<0) a=-a;
+	return a;}
+
 struct PT {
 
 	double x, y;
@@ -30,7 +34,11 @@ struct PT {
 		if(x == P.x) return y < P.y;
 		return x < P.x;}
 	bool operator == (const PT &P){
-		return (x == P.x && y == P.y);}
+		//return (x == P.x && y == P.y);
+		return (*this-P).dist() < eps;
+	}
+	bool operator != (const PT &P){
+		return !(*this==P);}
 
 	// Auxiliares de ângulo (0 - 2pi) e módulo
 	double dist(){
@@ -57,5 +65,5 @@ struct PT {
 		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) > 0;}
 	bool alligned(const PT &a, const PT &b){
 		double r = a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y);
-		return abs(r) < eps;}
+		return dabs(r) < eps;}
 };
