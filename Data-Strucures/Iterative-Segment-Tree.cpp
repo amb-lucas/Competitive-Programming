@@ -43,7 +43,7 @@ int query(int p){
 
 // [l,r] -> r=N+1
 void modify(int l, int r, int val){
-	for (l += n, r += n; l < r; l >>= 1, r >>= 1){
+	for (l += N, r += N; l < r; l >>= 1, r >>= 1){
   		if(l&1) t[l++] += val;
     	if(r&1) t[--r] += val;
 	}
