@@ -51,6 +51,26 @@ bool pointInsideTriangle(PT &p, PT &a, PT &b, PT &c){
 	return A == B && A == C;
 }
 
+// Determina se o ponto esta num poligono convexo em O(lgn)
+bool pointInConvexPolygon(vector<PT> &p, PT &q){
+
+	if(p.size() == 0) return 0;
+	if(p.size() == 1) return p[0] == q;
+	if(p.size() == 2) return pointInSegment(p[0], p[1], q);
+
+	if(pointInSegment(p[0], p[1], q)) return 1;
+	if(q.ccw(p[0], p[1])) return 0;
+	if(q.cw(p[0], p.back())) return 0;
+
+	int l = 1, m, r = p.size()-1;
+	while(l<r-1){
+		m = (l+r)>>1;
+		if(!q.cw(p[0], p[m])) r = m;
+		else l = m;
+	}
+	return pointInsideTriangle(q, p[0], p[l], p[r]);
+}
+
 // Calcula a intersecao entre as retas a - b e c - d assumindo que uma unica intersecao existe
 // Para intersecao de segmentos, cheque primeiro se os segmentos intersectam e que nao sao paralelos
 PT computeLineIntersection(PT a, PT b, PT c, PT d){
