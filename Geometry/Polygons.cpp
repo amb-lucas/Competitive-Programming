@@ -35,6 +35,7 @@ PT computeCircleCenter(PT a, PT b, PT c){
 	return computeLineIntersection(b, b+(a-b).rotateCW(), c, c+(a-c).rotateCW());
 }
 
+// Calcula area de um poligono
 double area(vector<PT> &P){
 	double res = 0;
 	for(int i=0; i<P.size(); i++){
@@ -42,4 +43,16 @@ double area(vector<PT> &P){
 		res += (p.x-q.x)*(p.y+q.y);
 	}
 	return dabs(res)/2;
+}
+
+// Faz a interseção de um poligono com um semiplano (corte CW)
+vector<PT> cutPolygon(vector<PT> &Q, PT a, PT b){
+	vector<PT> resp;
+	for(int i=0, j; i<Q.size(); i++){
+		j = (i+1)%Q.size();
+		if(!Q[i].ccw(a, b)) resp.push_back(Q[i]);
+		if(Q[i].cw(a,b) != Q[j].cw(a,b))
+			resp.push_back(computeLineIntersection(a,b,Q[i],Q[j]));
+	}
+	return resp;
 }
