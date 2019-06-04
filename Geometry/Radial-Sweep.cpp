@@ -31,7 +31,7 @@ int query(int p, double R){
 		else if(2*R >= (P[i]-P[p]).abs()){
 
 			double alfa = (P[i]-P[p]).angle();
-			double beta = acos((P[i]-P[p]).abs()/(2*R));
+			double beta = acos((P[i]-P[p]).dist()/(2*R));
 
 			double ini = normalizar(alfa - beta);
 			double fim = normalizar(alfa + beta);
