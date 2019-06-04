@@ -84,3 +84,12 @@ PT computeCircleCenter(PT a, PT b, PT c){
 	c = (a+c)/2;
 	return computeLineIntersection(b, b+(a-b).rotateCW(), c, c+(a-c).rotateCW());
 }
+
+double area(vector<PT> &P){
+	double res = 0;
+	for(int i=0; i<P.size(); i++){
+		PT p = P[i], q = P[(i+1)%P.size()];
+		res += (p.x-q.x)*(p.y+q.y);
+	}
+	return dabs(res)/2;
+}
