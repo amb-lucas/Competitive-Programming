@@ -42,6 +42,15 @@ bool segmentsIntersect(PT a, PT b, PT c, PT d){
 	return 1;
 }
 
+// Determina se o ponto p esta dentro do triangulo (a, b, c)
+bool pointInsideTriangle(PT &p, PT &a, PT &b, PT &c){
+	if(pointInSegment(a,b,p)) return 1;
+	if(pointInSegment(b,c,p)) return 1;
+	if(pointInSegment(c,a,p)) return 1;
+	bool A = p.cw(a, b), B = p.cw(b, c), C = p.cw(c, a);
+	return A == B && A == C;
+}
+
 // Calcula a intersecao entre as retas a - b e c - d assumindo que uma unica intersecao existe
 // Para intersecao de segmentos, cheque primeiro se os segmentos intersectam e que nao sao paralelos
 PT computeLineIntersection(PT a, PT b, PT c, PT d){
