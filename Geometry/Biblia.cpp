@@ -46,7 +46,7 @@ bool segmentsIntersect(PT a, PT b, PT c, PT d){
 // Para intersecao de segmentos, cheque primeiro se os segmentos intersectam e que nao sao paralelos
 PT computeLineIntersection(PT a, PT b, PT c, PT d){
 	b=b-a; d=c-d; c=c-a;
-    return a + b*(c^d)/(b^d);
+	return a + b*(c^d)/(b^d);
 }
 
 // Calcula centro do circulo dado tres pontos
