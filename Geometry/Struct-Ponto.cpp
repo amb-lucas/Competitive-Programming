@@ -54,9 +54,9 @@ struct PT {
 
 	// Reta AB gira CW ou CCW para ficar na direção de (x,y)
 	bool cw(PT &a, PT &b){
-		return ((*this-a)^(b-a)) < 0;}
+		return ((*this-a)^(b-a)) < -eps;}
 	bool ccw(PT &a, PT &b){
-		return ((*this-a)^(b-a)) > 0;}
+		return ((*this-a)^(b-a)) > eps;}
 	bool aligned(PT &a, PT &b){
 		return fabs((*this-a)^(b-a)) < eps;}
 };
