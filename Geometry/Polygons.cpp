@@ -28,6 +28,26 @@ bool pointInConvexPolygon(vector<PT> &p, PT &q){
 	return pointInsideTriangle(q, p[0], p[l], p[r]);
 }
 
+// Determina se o ponto esta estritamente dentro de um poligono convexo em O(lgn)
+bool pointStriclyInConvexPolygon(vector<PT> &p, PT &q){
+
+	if(p.size() < 3) return 0;
+
+	if(pointInSegment(p[0], p[1], q)) return 0;
+	if(pointInSegment(p[0],p.back(), q)) return 0;
+	if(q.ccw(p[0], p[1])) return 0;
+	if(q.cw(p[0], p.back())) return 0;
+
+	int l = 1, m, r = p.size()-1;
+	while(l<r-1){
+		m = (l+r)>>1;
+		if(!q.cw(p[0], p[m])) r = m;
+		else l = m;
+	}
+	if(pointInSegment(p[l],p[r],q)) return 0;
+	return pointInsideTriangle(q, p[0], p[l], p[r]);
+}
+
 // Calcula centro do circulo dado tres pontos
 PT computeCircleCenter(PT a, PT b, PT c){
 	b = (a+b)/2;
