@@ -9,12 +9,13 @@ bool linesCollinear(PT a, PT b, PT c, PT d){
 
 // Projeta ponto c na linha a - b assumindo a != b
 PT projectPointLine(PT a, PT b, PT c){
+	if(a == b) return a;
 	return a + (b-a)*((c-a)*(b-a))/((b-a)*(b-a));
 }
 
 // Determina se o ponto c esta na linha a - b assumindo a != b
 bool pointInLine(PT a, PT b, PT c){
-	return (projectPointLine(a, b, c)-c).dist()<eps;
+	return fabs((b-a)^(c-a)) < eps;
 }
 
 // Determina se o ponto c esta em um segmento a - b
