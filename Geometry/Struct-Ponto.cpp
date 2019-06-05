@@ -1,9 +1,4 @@
-
 const double eps = 1e-8;
-
-double dabs(double a){
-	if(a<0) a=-a;
-	return a;}
 
 struct PT {
 
@@ -34,11 +29,10 @@ struct PT {
 		if(x == P.x) return y < P.y;
 		return x < P.x;}
 	bool operator == (const PT &P){
-		//return (x == P.x && y == P.y);
-		return (*this-P).dist() < eps;
+		return (*this-P).dist() < eps;}
+	bool operator != (const PT &p){
+		return !(*this==p);
 	}
-	bool operator != (const PT &P){
-		return !(*this==P);}
 
 	// Auxiliares de ângulo (0 - 2pi) e módulo
 	double dist(){
@@ -59,11 +53,10 @@ struct PT {
 		return rotateCCW(2*acos(-1)-t);}
 
 	// Reta AB gira CW ou CCW para ficar na direção de (x,y)
-	bool cw(const PT &a, const PT &b){
-		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) < 0;}
-	bool ccw(const PT &a, const PT &b){
-		return a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y) > 0;}
-	bool alligned(const PT &a, const PT &b){
-		double r = a.x*(b.y-y) + b.x*(y-a.y) + x*(a.y-b.y);
-		return dabs(r) < eps;}
+	bool cw(PT &a, PT &b){
+		return ((*this-a)^(b-a)) < 0;}
+	bool ccw(PT &a, PT &b){
+		return ((*this-a)^(b-a)) > 0;}
+	bool aligned(PT &a, PT &b){
+		return fabs((*this-a)^(b-a)) < eps;}
 };
