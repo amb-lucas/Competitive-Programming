@@ -1,3 +1,4 @@
+
 struct halfplane {
 	
 	PT p1, p2;
@@ -52,30 +53,23 @@ vector<PT> intersect(vector<halfplane> H){
 		res.emplace_back(computeLineIntersection(pl[dq[i]].p1, pl[dq[i]].p2, pl[dq[(i+1)%dq.size()]].p1, pl[dq[(i+1)%dq.size()]].p2));
 	}
 
-	// Espaço vazio -> Retorna < 3 pontos
 	return res;
 }
 
-PT dir(halfplane h){
-	PT a = h.p2 - h.p1;
-	a = a.normalize().rotateCW();
-	return a;
-}
+bool teste(vector<PT> &P, double R){
 
-bool teste(vector<halfplane> &H, double R){
-
-	// halfplane salvo em sentido horário
-	// push_back(h.p2, h.p1) -> halfplane em CW
-	// push_back(h.p1, h.p2) -> halfplane em CCW
+	// push_back(q, p) -> halfplane em CW
+	// push_back(p, q) -> halfplane em CCW
 
 	vector<halfplane> HP;
-	for(auto h: H){
-		PT d = dir(h);
-		HP.push_back(halfplane(PT(h.p2+(d*R)), PT(h.p1+(d*R))));
+	for(int i=0; i<P.size(); i++){
+		PT p = P[i], q = P[(i+1)%P.size()];
+		PT d = q-p;
+		d = d.normalize().rotateCW();
+		HP.push_back(halfplane(q+(d*R), p+(d*R)));
 	}
 
-	vector<PT> P = intersect(HP);
-
+	vector<PT> PP = intersect(HP);
 	// existe se retornar mais de 3 pontos
-	return P.size() > 2;
+	return PP.size() > 2;
 }
