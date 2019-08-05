@@ -1,62 +1,52 @@
-const double eps = 1e-8;
+typedef long double ld;
+const ld eps = 1e-8;
+const ld PI = acosl(-1);
 
 struct PT {
 
-	double x, y;
-	PT(double x = 0, double y = 0): x(x), y(y) {}
+	ld x, y;
+	PT(ld x = 0, ld y = 0): x(x), y(y) {}
 
-	// Operações de soma vetoriais
-	PT operator + (const PT &P){
+	PT operator + (const PT P){
 		return PT(x + P.x, y + P.y);}
-	PT operator - (const PT &P){
+	PT operator - (const PT P){
 		return PT(x-P.x, y-P.y);}
 
-	// Operações de multiplicação por constante
-	PT operator * (const double d){
+	PT operator * (const ld d){
 		return PT(x*d, y*d);}
-	PT operator / (const double d){
+	PT operator / (const ld d){
 		return PT(x/d, y/d);}
 
-	// Produto Escalar
-	double operator * (const PT &P){
+	ld operator * (const PT P){
 		return x*P.x + y*P.y;}
-	// Produto Vetorial
-	double operator ^ (const PT &P){
+	ld operator ^ (const PT P){
 		return x*P.y - y*P.x;}
 
-	// Para ordenação e exclusão de repetidos
 	bool operator < (const PT &P){
-		if(x == P.x) return y < P.y;
+		if(fabs(x-P.x)<eps) return y < P.y;
 		return x < P.x;}
 	bool operator == (const PT &P){
 		return (*this-P).dist() < eps;}
-	bool operator != (const PT &p){
-		return !(*this==p);
-	}
 
-	// Auxiliares de ângulo (0 - 2pi) e módulo
-	double dist(){
+	ld dist(){
 		return sqrt(x*x+y*y);}
-	double angle(){
-		double a = atan2(y, x);
-		if(a<0) a += 2*acos(-1);
+	ld angle(){
+		ld a = atan2l(y, x);
+		if(a<0) a += 2*PI;
 		return a;}
 
-	// Normalizar vetor (distância = 1)
 	PT normalize(){
 		return *this/dist();}
-
-	// Rotaciona o ponto CCW ou CW ao redor da origem
-	PT rotateCCW(double t = acos(-1)/2){
-    	return PT(x*cos(t)-y*sin(t), x*sin(t)+y*cos(t));}
-	PT rotateCW(double t = acos(-1)/2){
-		return rotateCCW(2*acos(-1)-t);}
+	PT rotateCCW(ld t = PI/2){
+    	return PT(x*cosl(t)-y*sinl(t), x*sinl(t)+y*cosl(t));}
+	PT rotateCW(ld t = PI/2){
+		return rotateCCW(2*PI-t);}
 
 	// Reta AB gira CW ou CCW para ficar na direção de (x,y)
-	bool cw(PT &a, PT &b){
+	bool cw(PT a, PT b){
 		return ((*this-a)^(b-a)) < -eps;}
-	bool ccw(PT &a, PT &b){
+	bool ccw(PT a, PT b){
 		return ((*this-a)^(b-a)) > eps;}
-	bool aligned(PT &a, PT &b){
+	bool aligned(PT a, PT b){
 		return fabs((*this-a)^(b-a)) < eps;}
 };
