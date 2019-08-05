@@ -1,7 +1,7 @@
 
 // Determina se as linhas a - b e c - d sao paralelas ou colineares
 bool linesParallel(PT a, PT b, PT c, PT d){
-	return abs((b-a)^(c-d))<eps;
+	return fabs((b-a)^(c-d))<eps;
 }
 bool linesCollinear(PT a, PT b, PT c, PT d){
 	return a.alligned(c, d) && b.alligned(c, d);
