@@ -37,6 +37,7 @@ struct Dinic {
 		q.push(src);
 
 		while(!q.empty()){
+			
 			int on = q.front();
 			q.pop();
 
@@ -59,8 +60,9 @@ struct Dinic {
 		if(flow == 0) return 0;
 		if(on == sink) return flow;
 
-		while(pt[on] < edges[on].size()){
-			int cur = edges[on][pt[on]++];
+		for(;pt[on] < edges[on].size(); pt[on]++){
+			
+			int cur = edges[on][pt[on]];
 			if(d[on]+1 != d[E[cur].to]) continue;
 
 			ll got = dfs(E[cur].to, sink, min(flow, E[cur].cap));
