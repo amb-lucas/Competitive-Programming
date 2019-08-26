@@ -11,9 +11,8 @@ struct bMinVC{
 
 	void GetMatched(){
 		matched.resize(B.size());
-		for(int i=0; i<A.size(); i++){
+		for(int i=0; i<A.size(); i++)
 			if(match[i]!=-1) matched[match[i]] = i;
-		}
 	}
 
 	vector<bool> mark, marked;
@@ -29,18 +28,14 @@ struct bMinVC{
 
 	vi solve(){
 		GetMatched();
+		
 		mark = vector<bool>(A.size(), 0);
 		marked = vector<bool>(B.size(), 0);
-
-		for(int i=0; i<A.size(); i++)
-			if(match[i] == -1) dfs(i);
+		for(int i=0; i<A.size(); i++) if(match[i] == -1) dfs(i);
 
 		vi ans;
-		for(int i=0; i<A.size(); i++)
-			if(mark[i] == 0) ans.push_back(A[i]);
-		for(int j=0; j<B.size(); j++)
-			if(marked[j]) ans.push_back(B[j]);
-
+		for(int i=0; i<A.size(); i++) if(mark[i] == 0) ans.push_back(A[i]);
+		for(int j=0; j<B.size(); j++) if(marked[j]) ans.push_back(B[j]);
 		return ans;
 	}
 };
