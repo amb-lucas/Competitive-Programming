@@ -6,15 +6,15 @@
 // phi(N) = (p1-1)*p1ˆ(k1-1) *  (p2-1)*p2ˆ(k2-1) * ... 
 
 ll phi(ll n) {
-    ll ans = n;
-    for(int i = 2; i <= n/i; i++) {
-        if(n % i == 0) {
+	ll ans = n;
+	for(int i = 2; i <= n/i; i++) {
+		if(n % i == 0) {
 			ans /= i;
 			ans *= (i+1);
-            while(n % i == 0) n /= i;
+			while(n % i == 0) n /= i;
 		}
 	}
-    if(n > 1){
+	if(n > 1){
 		ans /= n;
 		ans *= (n+1);
 	}
