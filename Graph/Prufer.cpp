@@ -98,26 +98,3 @@ Tree pruferToTree(vector<int> seq){
 
 	return T;
 }
-
-int main(){
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-
-	int N;
-	cin >> N;
-
-	Tree T(N);
-	for(int i=0, a, b; i<N-1; i++){
-		cin >> a >> b;
-		T.addEdge(a, b);
-	}
-
-	vector<int> v = treeToPrufer(T);
-	for(int u: v) cout << u << ' ';
-	cout << '\n';
-
-	Tree U = pruferToTree(v);
-	U.print();
-
-	return 0;
-}
