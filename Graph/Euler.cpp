@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 
 struct Euler {
 
@@ -43,10 +45,7 @@ struct Euler {
 
 	bool dfs(int on, int rt = -1){
 		
-		if(rt == -1){
-			rt = on;
-			cycle.clear();
-		}
+		if(rt == -1) rt = on, cycle.clear();
 		else if(on == rt) return 1;
 
 		while(adj[on].size()){
