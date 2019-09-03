@@ -1,53 +1,31 @@
 
 const int BLOCKSZ = 300;
-
 struct query {
-
-    int l, r;
-    int id;
-
-    bool operator < (const query &A){
-        if(l/BLOCKSZ == A.l/BLOCKSZ) return r < A.r;
-        return l/BLOCKSZ < A.l/BLOCKSZ;
-    }
+	int l, r, id;
+	bool operator < (query A){
+		if(l/BLOCKSZ == A.l/BLOCKSZ) return r<A.r;
+		return l/BLOCKSZ < A.l/BLOCKSZ;
+	}
 };
 
-    vector<query> q(Q);
-    vector<ll> resp(Q);
+vector<query> q(Q);
+vector<int> ans(Q);
 
-    for(int i=0; i<Q; i++){
-        cin >> q[i].l >> q[i].r;
-        q[i].l--;
-        q[i].id = i;
-    }
-    sort(q.begin(), q.end());
+for(int i=0; i<Q; i++){
+    scanf("%d %d",&q[i].l, &q[i].r);
+    q[i].id = i;
+}
+sort(q.begin(), q.end());
 
-    for(int i=q[0].l; i<=q[0].r; i++){
-        add(i);
-    }
+int j = q[0].l, k = q[0].r;
+for(int i=j; i<=k; i++) add(i);
 
-    int j=q[0].l, k=q[0].r;
-    for(auto qu: q){
-        
-        while(j>qu.l){
-            j--;
-            add(j);
-        }
+for(query qu: q){
 
-        while(k<qu.r){
-            k++;
-            add(k);
-        }
+    while(j>qu.l) add(--j);
+    while(k<qu.r) add(++k);
+    while(j<qu.l) remove(j++);
+    while(k>qu.r) remove(k--);
 
-        while(j<qu.l){
-            remove(j);
-            j++;
-        }
-
-        while(k>qu.r){
-            remove(k);
-            k--;
-        }
-
-        resp[qu.id] = ans;
-    }
+    ans[qu.id] = solve();
+}
