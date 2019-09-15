@@ -64,6 +64,8 @@ struct Euler {
 		vector<int> path;
 		deque<aresta> dq;
 
+		// Debug: Atualizar aresta pra se apontar pro end ser a primeira do vetor.
+		
 		path.push_back(on);
 
 		while(on != -1){
