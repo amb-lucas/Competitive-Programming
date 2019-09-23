@@ -11,4 +11,26 @@
 - The number of ways to cover the ladder 1…n using n rectangles (The ladder consists of n columns, where ith column has a height i).
 */
 
+/*
 C(n) = (2n!)/(n+1)!n!
+ou
+C(n) = C(n-1)*(2*n)*(2*n-1)/(n+1)*(n)
+*/
+
+const int LIM = 5e3+10;
+ll cat[LIM];
+ll inv[LIM+10];
+
+void pre(){
+    inv[1] = 1;
+    for(int i = 2; i<LIM+10; i++)
+    	inv[i] = (MOD - ((MOD/i)*inv[MOD%i])%MOD) %MOD;
+    
+    cat[1] = 1;
+    for(int i=2; i<LIM; i++){
+        cat[i] = (cat[i-1]*(2*i))%MOD;
+        cat[i] = (cat[i]*(2*i-1))%MOD;
+        cat[i] = (cat[i]*inv[i+1])%MOD;
+        cat[i] = (cat[i]*inv[i])%MOD;
+    }
+}
