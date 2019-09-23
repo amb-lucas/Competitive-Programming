@@ -14,8 +14,10 @@
 /*
 C(n) = (2n!)/(n+1)!n!
 ou
-C(n) = C(n-1)*(2*n)*(2*n-1)/(n+1)*(n)
+C(n) = C(n-1)*2*(2*n-1)/(n+1)
 */
+
+typedef long long ll;
 
 const int LIM = 5e3+10;
 ll cat[LIM];
@@ -27,10 +29,9 @@ void pre(){
     	inv[i] = (MOD - ((MOD/i)*inv[MOD%i])%MOD) %MOD;
     
     cat[1] = 1;
-    for(int i=2; i<LIM; i++){
-        cat[i] = (cat[i-1]*(2*i))%MOD;
+    for(int i=2; i<LIM-1; i++){
+        cat[i] = (cat[i-1]<<1)%MOD;
         cat[i] = (cat[i]*(2*i-1))%MOD;
         cat[i] = (cat[i]*inv[i+1])%MOD;
-        cat[i] = (cat[i]*inv[i])%MOD;
     }
 }
